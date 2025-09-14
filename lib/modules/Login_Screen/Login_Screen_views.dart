@@ -9,9 +9,19 @@ class LoginScreenViews extends GetView<LoginScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: Text('data'),
+      body: ListView(
+        children: [
+          Container(
+            height: 55,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8)),
+            ),
+            child: Row(children: [
+              
+            ],),
+          ),
+        ],
       ),
     );
   }

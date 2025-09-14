@@ -1,8 +1,9 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../app/app_color.dart';
-import '../app/app_style.dart';
+import 'package:my_project_mobile_app/app/app_color.dart';
+import 'package:my_project_mobile_app/app/app_style.dart';
 
 class DialogUtil {
   DialogUtil._();

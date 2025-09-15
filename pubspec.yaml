@@ -44,7 +44,7 @@ dev_dependencies:
   google_fonts:
   cached_network_image:
   http: ^1.5.0
-  font_awesome_flutter:
+  font_awesome_flutter: ^10.10.0
   syncfusion_flutter_charts:
   flutter_inappwebview:
   webview_flutter: ^4.7.0
@@ -60,6 +60,7 @@ dev_dependencies:
   image_picker_ios:
   shimmer:
   flutter_easyloading:
+  flutter_localization:
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -83,10 +84,10 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     # Logos
-    - assets/logos/
+    #- assets/logos/
 
     # Icons
-    - assets/icons/
+    #- assets/icons/
     # - assets/icons/social/
 
     # Images

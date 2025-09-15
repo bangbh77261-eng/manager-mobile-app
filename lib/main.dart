@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:my_project_mobile_app/routers/app_pages.dart';
 import 'languages/services/language_controller.dart';
 import 'languages/services/translation_service.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await TranslationService.loadTranslations();
@@ -23,9 +22,9 @@ class MyApp extends StatelessWidget {
       locale: const Locale('vi'),
       fallbackLocale: const Locale('en'),
       localizationsDelegates: const [
-        // GlobalMaterialLocalizations.delegate,
-        // GlobalWidgetsLocalizations.delegate,
-        // GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
         Locale('vi'),

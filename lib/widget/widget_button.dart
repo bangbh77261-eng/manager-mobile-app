@@ -1,65 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:my_project_mobile_app/app/app_color.dart';
-import 'package:my_project_mobile_app/app/app_style.dart';
 
-class WidgetButton extends StatelessWidget {
-  final String? title;
-  final String? icon;
-  final double? width;
-  final double? height;
-  final Color backgroundColor;
-  final EdgeInsetsGeometry? margin;
-  final EdgeInsetsGeometry? padding;
-  final BorderRadiusGeometry? borderRadius;
-
+class CustomButton extends StatelessWidget {
+  final String text;
   final VoidCallback? onPressed;
+  final bool isLoading;
+  final bool isDisabled;
+  final IconData? icon;
+  final Color? backgroundColor;
+  final Color? textColor;
+  final double borderRadius;
+  final double elevation;
 
-  const WidgetButton({
-    Key? key,
-    this.width,
-    this.height,
-    this.margin,
-    this.padding,
-    this.title,
+  const CustomButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.isLoading = false,
+    this.isDisabled = false,
     this.icon,
-    this.borderRadius,
-    this.backgroundColor = AppColors.primary,
-    this.onPressed,
-  }) : super(key: key);
+    this.backgroundColor,
+    this.textColor,
+    this.borderRadius = 12,
+    this.elevation = 2,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      margin: margin,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          elevation: 0,
-          padding: padding ?? const EdgeInsets.symmetric(vertical: 20),
-          shape: RoundedRectangleBorder(
-            borderRadius: borderRadius ?? BorderRadius.circular(4),
-          ),
+    final effectiveBgColor = backgroundColor ?? Theme.of(context).primaryColor;
+    final effectiveTextColor = textColor ?? Colors.white;
+
+    return ElevatedButton(
+      onPressed: (isDisabled || isLoading) ? null : onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: effectiveBgColor,
+        foregroundColor: effectiveTextColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            icon == null
-                ? Container()
-                : Container(
-                    margin: const EdgeInsets.only(right: 5),
-                    child: Text('data'),
-                  ),
-            Text(
-              title ?? '',
-              maxLines: 2,
-              style: AppStyle.bold(fontSize: 14, color: AppColors.textDark),
-            ),
-          ],
-        ),
+        elevation: elevation,
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
       ),
+      child: isLoading
+          ? const SizedBox(
+              width: 22,
+              height: 22,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (icon != null) ...[
+                  Icon(icon, size: 20),
+                  const SizedBox(width: 8),
+                ],
+                Text(
+                  text,
+                  style: TextStyle(fontSize: 16, color: effectiveTextColor,fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
     );
   }
 }
